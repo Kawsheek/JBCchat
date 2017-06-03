@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">JBCchat</string>
+    <array name="depts_array">
+        <item>BCA</item>
+        <item>Statistics</item>
+        <item>Physics</item>
+        <item>Chemistry</item>
+        <item>Mathematics</item>
+        <item>Zoology</item>
+        <item>Botany</item>
+        <item>Geography</item>
+    </array>
+
+</resources>

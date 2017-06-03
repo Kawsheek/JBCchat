@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "721434899074",
+    "firebase_url": "https://jbcchat-ed847.firebaseio.com",
+    "project_id": "jbcchat-ed847",
+    "storage_bucket": "jbcchat-ed847.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721434899074:android:a9ce28f22628f3f4",
+        "android_client_info": {
+          "package_name": "com.dev.kaushik.jbcchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "721434899074-bn54f2j28nlm0b49ql6376ek88ehi5jp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG7jPA8ZD8lW7db1eKetfzX1DCxRxrLQ4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

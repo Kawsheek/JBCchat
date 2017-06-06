@@ -1,16 +1,13 @@
 package com.dev.kaushik.jbcchat;
 
 import android.app.ProgressDialog;
-import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -32,7 +29,7 @@ import java.util.Map;
 public class Chat extends AppCompatActivity {
     LinearLayout layout;
     RelativeLayout layout_2;
-    Button sendButton;
+    ImageButton sendButton;
     EditText messageArea;
     Firebase reference1, reference2;
 
@@ -44,7 +41,7 @@ public class Chat extends AppCompatActivity {
 
         layout = (LinearLayout) findViewById(R.id.layout1);
         layout_2 = (RelativeLayout)findViewById(R.id.layout2);
-        sendButton = (Button)findViewById(R.id.sendButton);
+        sendButton = (ImageButton)findViewById(R.id.sendButton);
         messageArea = (EditText)findViewById(R.id.messageArea);
 
 
@@ -54,7 +51,7 @@ public class Chat extends AppCompatActivity {
         reference1 = new Firebase("https://jbcchat-ed847.firebaseio.com/messages/" + UserDetails.username + "_" + UserDetails.chatWith);
         reference2 = new Firebase("https://jbcchat-ed847.firebaseio.com/messages/" + UserDetails.chatWith + "_" + UserDetails.username);
 
-        final ProgressDialog pd = new ProgressDialog(Chat.this);
+        ProgressDialog pd = new ProgressDialog(Chat.this);
         pd.setMessage("Loading...");
         pd.setCanceledOnTouchOutside(false);
         pd.show();

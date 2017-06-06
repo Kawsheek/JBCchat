@@ -13,28 +13,54 @@
     tools:context="com.dev.kaushik.jbcchat.Chat">
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_weight="20"
-        android:layout_height="wrap_content"
-        android:id="@+id/scrollView">
-        <RelativeLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="0dp"
+        android:layout_weight="20">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/layout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="bottom">
+
             <LinearLayout
+                android:id="@+id/layout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/layout1">
-            </LinearLayout>
+                android:orientation="vertical"></LinearLayout>
         </RelativeLayout>
     </ScrollView>
 
-    <include
-        layout="@layout/message_area"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
         android:gravity="bottom"
-        android:layout_marginTop="5dp"/>
+        android:orientation="horizontal">
+
+        <EditText
+
+            android:id="@+id/messageArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Write a message..."
+            android:maxHeight="80dp"
+            android:textColor="#CFD8DC"
+            android:textColorHint="#CFD8DC"
+            tools:textColor="@android:color/background_light" />
+
+        <Button
+            android:id="@+id/sendButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="false"
+            android:background="@drawable/ic_menu_send"
+            android:cropToPadding="false"
+            android:padding="4dp" />
+
+    </LinearLayout>
 </LinearLayout>

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">JBCchat</string>
     <array name="depts_array">
+        <item>select</item>
         <item>BCA</item>
         <item>Statistics</item>
         <item>Physics</item>

@@ -1,8 +1,11 @@
 package com.dev.kaushik.jbcchat;
 
+import android.app.ProgressDialog;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -31,8 +34,8 @@ public class Chat extends AppCompatActivity {
     RelativeLayout layout_2;
     Button sendButton;
     EditText messageArea;
-    ScrollView scrollView;
     Firebase reference1, reference2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +46,48 @@ public class Chat extends AppCompatActivity {
         layout_2 = (RelativeLayout)findViewById(R.id.layout2);
         sendButton = (Button)findViewById(R.id.sendButton);
         messageArea = (EditText)findViewById(R.id.messageArea);
-        scrollView = (ScrollView)findViewById(R.id.scrollView);
+
+
+
 
         Firebase.setAndroidContext(this);
         reference1 = new Firebase("https://jbcchat-ed847.firebaseio.com/messages/" + UserDetails.username + "_" + UserDetails.chatWith);
         reference2 = new Firebase("https://jbcchat-ed847.firebaseio.com/messages/" + UserDetails.chatWith + "_" + UserDetails.username);
+
+        final ProgressDialog pd = new ProgressDialog(Chat.this);
+        pd.setMessage("Loading...");
+        pd.setCanceledOnTouchOutside(false);
+        pd.show();
+        try {
+
+            reference1.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    Map map = dataSnapshot.getValue(Map.class);
+                    String message = map.get("message").toString();
+                    String userName = map.get("user").toString();
+
+                    if(userName.equals(UserDetails.username)){
+                        addMessageBox("You:-\n" + message, 1);
+                    }
+                    else{
+                        addMessageBox(UserDetails.chatWith + ":-\n" + message, 2);
+                    }
+                }
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {}
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {}
+            });
+            pd.dismiss();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,49 +95,18 @@ public class Chat extends AppCompatActivity {
                 String messageText = messageArea.getText().toString();
 
                 if(!messageText.equals("")){
+                    sendButton.setEnabled(true);
                     Map<String, String> map = new HashMap<String, String>();
                     map.put("message", messageText);
                     map.put("user", UserDetails.username);
                     reference1.push().setValue(map);
                     reference2.push().setValue(map);
                     messageArea.setText("");
+
                 }
-            }
-        });
-
-        reference1.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Map map = dataSnapshot.getValue(Map.class);
-                String message = map.get("message").toString();
-                String userName = map.get("user").toString();
-
-                if(userName.equals(UserDetails.username)){
-                    addMessageBox("You:-\n" + message, 1);
+                else {
+                    sendButton.setEnabled(false);
                 }
-                else{
-                    addMessageBox(UserDetails.chatWith + ":-\n" + message, 2);
-                }
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-
             }
         });
     }
@@ -108,7 +117,6 @@ public class Chat extends AppCompatActivity {
 
         LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         lp2.weight = 1.0f;
-
         if(type == 1) {
             lp2.gravity = Gravity.LEFT;
             textView.setBackgroundResource(R.drawable.bubble_in);
@@ -119,6 +127,14 @@ public class Chat extends AppCompatActivity {
         }
         textView.setLayoutParams(lp2);
         layout.addView(textView);
-        scrollView.fullScroll(View.FOCUS_DOWN);
+        final ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
+        scrollView.post(new Runnable()
+        {
+            public void run()
+            {
+                scrollView.fullScroll(View.FOCUS_DOWN);
+            }
+        });
+
     }
 }

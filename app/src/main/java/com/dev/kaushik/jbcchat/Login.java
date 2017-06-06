@@ -44,7 +44,7 @@ public class Login extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                user = username.getText().toString();
+                user = username.getText().toString().toLowerCase();
                 pass = password.getText().toString();
 
                 if(user.equals("")){
@@ -57,6 +57,7 @@ public class Login extends AppCompatActivity {
                     String url = "https://jbcchat-ed847.firebaseio.com/users.json";
                     final ProgressDialog pd = new ProgressDialog(Login.this);
                     pd.setMessage("Loading...");
+                    pd.setCanceledOnTouchOutside(false);
                     pd.show();
 
                     StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
@@ -76,6 +77,8 @@ public class Login extends AppCompatActivity {
                                         UserDetails.username = user;
                                         UserDetails.password = pass;
                                         startActivity(new Intent(Login.this, Users.class));
+                                        username.setText("");
+                                        password.setText("");
                                     }
                                     else {
                                         Toast.makeText(Login.this, "incorrect password", Toast.LENGTH_LONG).show();

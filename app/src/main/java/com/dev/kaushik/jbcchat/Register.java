@@ -60,7 +60,7 @@ public class Register extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                user = username.getText().toString();
+                user = username.getText().toString().toLowerCase();
                 pass = password.getText().toString();
                 cpass = cpassword.getText().toString();
                 dept = department.getSelectedItem().toString();
@@ -83,7 +83,8 @@ public class Register extends AppCompatActivity {
                 else if (!cpass.equals(pass)) {
                     cpassword.setError("mismatch passwords");
                 }
-                else if (dept.equals("")) {
+                else if (dept.equals("select")) {
+
                     Toast.makeText(Register.this, "Choose your department" , Toast.LENGTH_LONG).show();
                 }
                 else if (!tCheckbox.isChecked()) {

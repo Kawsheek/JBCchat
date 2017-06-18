@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "721434899074-048mbphto38s5m0ih6c9cr4gi20sp30g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dev.kaushik.jbcchat",
+            "certificate_hash": "db4c5adc342f2d96553d0b29b45784ce07028a65"
+          }
+        },
+        {
           "client_id": "721434899074-bn54f2j28nlm0b49ql6376ek88ehi5jp.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "721434899074-bn54f2j28nlm0b49ql6376ek88ehi5jp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

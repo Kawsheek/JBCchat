@@ -21,7 +21,8 @@
         <activity android:name=".Register" />
         <activity android:name=".Users" />
         <activity android:name=".Chat" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Admin"></activity>
     </application>
 
 </manifest>

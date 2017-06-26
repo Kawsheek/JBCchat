@@ -2,14 +2,26 @@
     <string name="app_name">JBCchat</string>
     <array name="depts_array">
         <item>select</item>
-        <item>BCA</item>
-        <item>Statistics</item>
-        <item>Physics</item>
-        <item>Chemistry</item>
-        <item>Mathematics</item>
-        <item>Zoology</item>
+        <item>Assamese</item>
+        <item>Bengali</item>
+        <item>Bio-Technology</item>
         <item>Botany</item>
+        <item>Chemistry</item>
+        <item>Commerce</item>
+        <item>Computer Science</item>
+        <item>Economics</item>
+        <item>English</item>
         <item>Geography</item>
+        <item>Geology</item>
+        <item>Hindi</item>
+        <item>History</item>
+        <item>Mathematics</item>
+        <item>Philosophy</item>
+        <item>Physics and Electronics</item>
+        <item>Political Science</item>
+        <item>Sanskrit</item>
+        <item>Statistics</item>
+        <item>Zoology</item>
     </array>
     <string name="sign_out">Sign Out</string>
     <string name="courses">Courses</string>

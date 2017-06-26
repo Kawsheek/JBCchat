@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -34,12 +35,37 @@ public class Users extends AppCompatActivity {
     ProgressDialog pd;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        MenuItem signOut = menu.findItem(R.id.sign_out_menu);
+        signOut.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                startActivity(new Intent(Users.this, Login.class));
+                return false;
+            }
+        });
+        MenuItem courses = menu.findItem(R.id.courses);
+        courses.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                startActivity(new Intent(Users.this, Courses.class));
+                return false;
+            }
+        });
+
+        return true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users);
 
-        usersList = (ListView)findViewById(R.id.usersList);
-        noUsersText = (TextView)findViewById(R.id.noUsersText);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(mToolbar);
+        usersList = (ListView) findViewById(R.id.usersList);
+        noUsersText = (TextView) findViewById(R.id.noUsersText);
 
         pd = new ProgressDialog(Users.this);
         pd.setMessage("Loading...");
@@ -47,12 +73,12 @@ public class Users extends AppCompatActivity {
 
         String url = "https://jbcchat-ed847.firebaseio.com/users.json";
 
-        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
                 doOnSuccess(s);
             }
-        },new Response.ErrorListener(){
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 System.out.println("" + volleyError);
@@ -71,17 +97,17 @@ public class Users extends AppCompatActivity {
         });
     }
 
-    public void doOnSuccess(String s){
+    public void doOnSuccess(String s) {
         try {
             JSONObject obj = new JSONObject(s);
 
             Iterator i = obj.keys();
             String key = "";
 
-            while(i.hasNext()){
+            while (i.hasNext()) {
                 key = i.next().toString();
 
-                if(!key.equals(UserDetails.username)) {
+                if (!key.equals(UserDetails.username)) {
                     al.add(key);
                 }
 
@@ -92,11 +118,10 @@ public class Users extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if(totalUsers <=1){
+        if (totalUsers <= 1) {
             noUsersText.setVisibility(View.VISIBLE);
             usersList.setVisibility(View.GONE);
-        }
-        else{
+        } else {
             noUsersText.setVisibility(View.GONE);
             usersList.setVisibility(View.VISIBLE);
             usersList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, al));
@@ -104,15 +129,6 @@ public class Users extends AppCompatActivity {
 
         pd.dismiss();
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
-    }
+
 }

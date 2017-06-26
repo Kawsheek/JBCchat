@@ -22,7 +22,9 @@
         <activity android:name=".Users" />
         <activity android:name=".Chat" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Admin"></activity>
+        <activity android:name=".Admin" />
+        <activity android:name=".Admin_Panel" />
+        <activity android:name=".Courses"></activity>
     </application>
 
 </manifest>

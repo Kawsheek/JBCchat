@@ -18,14 +18,14 @@
         android:textColor="@color/maroon"/>
 
     <EditText
-        android:id="@+id/admin_id"
+        android:id="@+id/admin_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="ID"/>
+        android:hint="e-mail"/>
 
     <EditText
         android:id="@+id/admin_pass"
-        android:hint="Password"
+        android:hint="password"
         android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -35,5 +35,12 @@
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone" />
 
 </LinearLayout>

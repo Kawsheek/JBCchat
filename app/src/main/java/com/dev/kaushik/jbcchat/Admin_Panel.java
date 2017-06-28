@@ -1,9 +1,12 @@
 package com.dev.kaushik.jbcchat;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +25,43 @@ public class Admin_Panel extends AppCompatActivity {
     FirebaseDatabase mdatabase;
     DatabaseReference mRef;
     FirebaseAuth.AuthStateListener mAuthStateListener;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        MenuItem signOut = menu.findItem(R.id.sign_out_menu);
+        signOut.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                startActivity(new Intent(Admin_Panel.this, Login.class));
+                return false;
+            }
+        });
+        MenuItem courses = menu.findItem(R.id.courses);
+        courses.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (mAuthStateListener != null) {
+                    mAuth.signOut();
+                }
+                else {
+                    Toast.makeText(Admin_Panel.this, "Already logged out!", Toast.LENGTH_LONG).show();
+                }
+                startActivity(new Intent(Admin_Panel.this, Courses.class));
+                finish();
+                return false;
+            }
+        });
+        MenuItem faculty = menu.findItem(R.id.faculty);
+        faculty.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                startActivity(new Intent(Admin_Panel.this, FacultyList.class));
+                return false;
+            }
+        });
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,13 +96,7 @@ public class Admin_Panel extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (mAuthStateListener != null) {
-                    mAuth.signOut();
-                    finish();
-                }
-                else {
-                    Toast.makeText(Admin_Panel.this, "Already logged out!", Toast.LENGTH_LONG).show();
-                }
+
 
             }
         });
@@ -72,7 +106,7 @@ public class Admin_Panel extends AppCompatActivity {
             public void onClick(View v) {
                 String CourseName = addCourses.getText().toString();
                 String DeptName = dept.getSelectedItem().toString();
-                mRef.child("CourseList").child("CourseName").setValue(CourseName);
+                mRef.child("CourseList").child("CourseName").setValue(DeptName+ " : " +CourseName);
                 addCourses.setText("");
 
             }
@@ -83,7 +117,7 @@ public class Admin_Panel extends AppCompatActivity {
                 String FacultyName = addFacultyNames.getText().toString();
                 String DeptName = dept.getSelectedItem().toString();
                 String FacultyQuals = addFacultyQuals.getText().toString();
-                mRef.child("FacultyList").child("FacultyName").setValue(FacultyName +": " + FacultyQuals);
+                mRef.child("FacultyList").child("FacultyName").setValue(DeptName+ ":-" +FacultyName +" : " + FacultyQuals);
                 addFacultyNames.setText("");
             }
         });

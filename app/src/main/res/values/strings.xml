@@ -25,4 +25,5 @@
     </array>
     <string name="sign_out">Sign Out</string>
     <string name="courses">Courses</string>
+    <string name="faculty">Faculty</string>
 </resources>

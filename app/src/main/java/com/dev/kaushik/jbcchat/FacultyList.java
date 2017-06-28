@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -14,11 +15,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-public class Courses extends AppCompatActivity {
-    ListView courseList;
-    ArrayList<String> courses_al = new ArrayList<>();
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class FacultyList extends AppCompatActivity {
+    ListView FacultyList;
+    ArrayList<String> faculty_al = new ArrayList<>();
     FirebaseDatabase mdatabase;
     DatabaseReference mRef;
     ChildEventListener mListener;
@@ -30,7 +35,7 @@ public class Courses extends AppCompatActivity {
         signOut.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                startActivity(new Intent(Courses.this, Login.class));
+                startActivity(new Intent(FacultyList.this, Login.class));
                 return false;
             }
         });
@@ -38,7 +43,7 @@ public class Courses extends AppCompatActivity {
         courses.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                startActivity(new Intent(Courses.this, Courses.class));
+                startActivity(new Intent(FacultyList.this, Courses.class));
                 return false;
             }
         });
@@ -46,20 +51,20 @@ public class Courses extends AppCompatActivity {
         faculty.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                startActivity(new Intent(Courses.this, FacultyList.class));
+                startActivity(new Intent(FacultyList.this, FacultyList.class));
                 return false;
             }
         });
 
         return true;
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_courses);
+        setContentView(R.layout.activity_faculty_list);
 
-        courseList = (ListView)findViewById(R.id.courseList);
-
+        FacultyList = (ListView) findViewById(R.id.faculty_list);
         mdatabase = FirebaseDatabase.getInstance();
         mRef = mdatabase.getReferenceFromUrl("https://jbcchat-ed847.firebaseio.com/Lists/FacultyList");
 
@@ -67,8 +72,8 @@ public class Courses extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String name = dataSnapshot.getValue().toString();
-                courses_al.add(name);
-                courseList.setAdapter(new ArrayAdapter<String>(Courses.this, android.R.layout.simple_list_item_1, courses_al));
+                faculty_al.add(name);
+                FacultyList.setAdapter(new ArrayAdapter<String>(FacultyList.this, android.R.layout.simple_list_item_1, faculty_al));
             }
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
@@ -81,5 +86,8 @@ public class Courses extends AppCompatActivity {
         };
         mRef.addChildEventListener(mListener);
 
+
+
     }
 }
+

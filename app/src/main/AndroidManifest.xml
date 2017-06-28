@@ -24,7 +24,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Admin" />
         <activity android:name=".Admin_Panel" />
-        <activity android:name=".Courses"></activity>
+        <activity android:name=".Courses" />
+        <activity android:name=".FacultyList"></activity>
     </application>
 
 </manifest>

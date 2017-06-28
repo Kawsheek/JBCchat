@@ -29,7 +29,7 @@ public class Admin_Panel extends AppCompatActivity {
         setContentView(R.layout.activity_admin__panel);
 
         mdatabase = FirebaseDatabase.getInstance();
-        mRef = mdatabase.getReference("Lists");
+        mRef = mdatabase.getReference().child("Lists");
         Button sign_out = (Button)findViewById(R.id.sign_out);
         final EditText addCourses = (EditText)findViewById(R.id.add_courses);
         final EditText addFacultyNames = (EditText)findViewById(R.id.add_faculty_names);
@@ -72,7 +72,7 @@ public class Admin_Panel extends AppCompatActivity {
             public void onClick(View v) {
                 String CourseName = addCourses.getText().toString();
                 String DeptName = dept.getSelectedItem().toString();
-                mRef.child(DeptName).child("CourseList").child(CourseName).setValue("null");
+                mRef.child("CourseList").child("CourseName").setValue(CourseName);
                 addCourses.setText("");
 
             }
@@ -83,7 +83,7 @@ public class Admin_Panel extends AppCompatActivity {
                 String FacultyName = addFacultyNames.getText().toString();
                 String DeptName = dept.getSelectedItem().toString();
                 String FacultyQuals = addFacultyQuals.getText().toString();
-                mRef.child(DeptName).child("FacultyList").child(FacultyName).setValue(FacultyQuals);
+                mRef.child("FacultyList").child("FacultyName").setValue(FacultyName +": " + FacultyQuals);
                 addFacultyNames.setText("");
             }
         });

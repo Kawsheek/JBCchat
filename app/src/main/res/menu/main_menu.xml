@@ -11,6 +11,12 @@
         app:showAsAction="always"
         android:visible="true"
         android:icon="@drawable/ic_courses"/>
+    <item
+        android:id="@+id/faculty"
+        android:title="@string/faculty"
+        app:showAsAction="always"
+        android:visible="true"
+        android:icon="@drawable/ic_faculty" />
 
 
 </menu>

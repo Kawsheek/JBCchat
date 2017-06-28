@@ -53,6 +53,14 @@ public class Users extends AppCompatActivity {
                 return false;
             }
         });
+        MenuItem faculty = menu.findItem(R.id.faculty);
+        faculty.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                startActivity(new Intent(Users.this, FacultyList.class));
+                return false;
+            }
+        });
 
         return true;
     }

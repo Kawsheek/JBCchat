@@ -73,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity ="bottom|end"
-        android:src="@drawable/ic_faculty_login"
+        android:src="@drawable/ic_courses_list"
         android:layout_margin="@dimen/activity_horizontal_margin"
         />
 </LinearLayout>

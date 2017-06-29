@@ -99,8 +99,8 @@ public class Register extends AppCompatActivity {
                 else if(user.length()<5){
                     username.setError("at least 5 characters long");
                 }
-                else if(pass.length()<5){
-                    password.setError("at least 5 characters long");
+                else if(pass.length()<8){
+                    password.setError("at least 8 characters long");
                 }
                 else if (!cpass.equals(pass)) {
                     cpassword.setError("mismatch passwords");

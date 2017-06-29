@@ -54,6 +54,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/depts_array" />
+    <EditText
+        android:id="@+id/mKey_entered"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter the key received from the admin"/>
 
     <CheckBox
         android:id="@+id/tCheckbox"

@@ -3,6 +3,7 @@ package com.dev.kaushik.jbcchat;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,14 +48,6 @@ public class FacultyList extends AppCompatActivity {
                 return false;
             }
         });
-        MenuItem faculty = menu.findItem(R.id.faculty);
-        faculty.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                startActivity(new Intent(FacultyList.this, FacultyList.class));
-                return false;
-            }
-        });
 
         return true;
     }
@@ -64,6 +57,8 @@ public class FacultyList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faculty_list);
 
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(mToolbar);
         FacultyList = (ListView) findViewById(R.id.faculty_list);
         mdatabase = FirebaseDatabase.getInstance();
         mRef = mdatabase.getReferenceFromUrl("https://jbcchat-ed847.firebaseio.com/Lists/FacultyList");

@@ -9,4 +9,5 @@ public class UserDetails {
     static String password = "";
     static String chatWith = "";
     static String department = "";
+    static String mKeyRef = "";
 }

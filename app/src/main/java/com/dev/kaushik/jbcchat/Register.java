@@ -23,6 +23,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.firebase.client.Firebase;
 import com.firebase.client.collection.ArraySortedMap;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,11 +35,14 @@ import org.json.JSONObject;
 import static android.R.layout.simple_spinner_item;
 
 public class Register extends AppCompatActivity {
-    EditText username, password, cpassword;
+    EditText username, password, cpassword,mKeyEntered;
     Button registerButton, login;
-    String user, pass, cpass, dept;
+    String user, pass, cpass, dept, master_key;
     Spinner department;
     CheckBox tCheckbox;
+    FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
+    DatabaseReference mRef;
+    ValueEventListener mListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +52,23 @@ public class Register extends AppCompatActivity {
         username = (EditText)findViewById(R.id.username);
         password = (EditText)findViewById(R.id.password);
         cpassword = (EditText)findViewById(R.id.cpassword);
+        mKeyEntered = (EditText)findViewById(R.id.mKey_entered);
         registerButton = (Button)findViewById(R.id.registerButton);
         login = (Button)findViewById(R.id.login);
         department = (Spinner)findViewById(R.id.dept);
         tCheckbox = (CheckBox)findViewById(R.id.tCheckbox);
+        mRef = mdatabase.getReference().child("master_key");
+
+        master_key = mKeyEntered.getText().toString();
+        mListener = new ValueEventListener() {
+            @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    UserDetails.mKeyRef = dataSnapshot.getValue().toString();
+                }
+            @Override
+                public void onCancelled(DatabaseError databaseError) {}
+            };
+        mRef.addValueEventListener(mListener);
 
         Firebase.setAndroidContext(this);
         login.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +85,7 @@ public class Register extends AppCompatActivity {
                 pass = password.getText().toString();
                 cpass = cpassword.getText().toString();
                 dept = department.getSelectedItem().toString();
+                master_key = mKeyEntered.getText().toString();
 
                 if(user.equals("")){
                     username.setError("can't be blank");
@@ -87,6 +109,13 @@ public class Register extends AppCompatActivity {
 
                     Toast.makeText(Register.this, "Choose your department" , Toast.LENGTH_LONG).show();
                 }
+                else if (master_key.equals("")) {
+                    mKeyEntered.setError("can't be blank");
+                }
+                if (!UserDetails.mKeyRef.equals(master_key)) {
+                    mKeyEntered.setError("Invalid key entered, confirm with college ADMIN");
+                }
+
                 else if (!tCheckbox.isChecked()) {
                     tCheckbox.setError("Confirm your identity");
                 }

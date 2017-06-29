@@ -3,6 +3,7 @@ package com.dev.kaushik.jbcchat;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -34,14 +35,6 @@ public class Courses extends AppCompatActivity {
                 return false;
             }
         });
-        MenuItem courses = menu.findItem(R.id.courses);
-        courses.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                startActivity(new Intent(Courses.this, Courses.class));
-                return false;
-            }
-        });
         MenuItem faculty = menu.findItem(R.id.faculty);
         faculty.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
@@ -58,6 +51,8 @@ public class Courses extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courses);
 
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(mToolbar);
         courseList = (ListView)findViewById(R.id.courseList);
 
         mdatabase = FirebaseDatabase.getInstance();

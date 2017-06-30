@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,6 +36,7 @@ public class Register extends AppCompatActivity {
     String user, pass, cpass, dept, master_key;
     Spinner department;
     CheckBox tCheckbox;
+    TextView chooseDept;
     FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
     DatabaseReference mRef;
     ValueEventListener mListener;
@@ -52,6 +54,7 @@ public class Register extends AppCompatActivity {
         login = (Button)findViewById(R.id.login);
         department = (Spinner)findViewById(R.id.dept);
         tCheckbox = (CheckBox)findViewById(R.id.tCheckbox);
+        chooseDept = (TextView)findViewById(R.id.choose_dept);
         mRef = mdatabase.getReference().child("master_key");
 
         master_key = mKeyEntered.getText().toString();
@@ -101,8 +104,8 @@ public class Register extends AppCompatActivity {
                     cpassword.setError("mismatch passwords");
                 }
                 else if (dept.equals("select")) {
-
-                    Toast.makeText(Register.this, "Choose your department" , Toast.LENGTH_LONG).show();
+                    registerButton.setEnabled(false);
+                    chooseDept.setError("Choose your department");
                 }
                 else if (master_key.equals("")) {
                     mKeyEntered.setError("can't be blank");

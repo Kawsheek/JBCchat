@@ -50,6 +50,7 @@ public class Admin_Panel extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 if (mAuthStateListener != null) {
                     mAuth.signOut();
+                    finish();
                 }
                 else {
                     Toast.makeText(Admin_Panel.this, "Already logged out!", Toast.LENGTH_LONG).show();
@@ -117,7 +118,7 @@ public class Admin_Panel extends AppCompatActivity {
             public void onClick(View v) {
                 String CourseName = addCourses.getText().toString();
                 String DeptName = dept.getSelectedItem().toString();
-                mRef.child("CourseList").child("CourseName").setValue(DeptName+ " : " +CourseName);
+                mRef.child("CourseList").push().setValue(DeptName+ " : " +CourseName);
                 addCourses.setText("");
                 Toast.makeText(Admin_Panel.this, "Done!", Toast.LENGTH_LONG).show();
 
@@ -129,7 +130,7 @@ public class Admin_Panel extends AppCompatActivity {
                 String FacultyName = addFacultyNames.getText().toString();
                 String DeptName = dept.getSelectedItem().toString();
                 String FacultyQuals = addFacultyQuals.getText().toString();
-                mRef.child("FacultyList").child("FacultyName").setValue(DeptName+ ":-" +FacultyName +" : " + FacultyQuals);
+                mRef.child("FacultyList").push().setValue(DeptName+ ":- " +FacultyName +" : " + FacultyQuals);
                 addFacultyNames.setText("");
                 addFacultyQuals.setText("");
                 Toast.makeText(Admin_Panel.this, "Done!", Toast.LENGTH_LONG).show();
@@ -149,7 +150,7 @@ public class Admin_Panel extends AppCompatActivity {
         generate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mRef2.child("master_key").setValue(getSaltString());
+                mRef2.child("master_key").setValue(token());
                 generate.setEnabled(false);
             }
         });
@@ -170,7 +171,7 @@ public class Admin_Panel extends AppCompatActivity {
         };
         mRef2.addChildEventListener(mListener);
     }
-    public String getSaltString() {
+    public String token() {
         String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         StringBuilder salt = new StringBuilder();
         Random rnd = new Random();

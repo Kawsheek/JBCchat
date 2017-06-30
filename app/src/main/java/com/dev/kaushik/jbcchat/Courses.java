@@ -17,6 +17,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+/**
+ * Created by Kaushik Das on 17/5/2017.
+ */
+
 public class Courses extends AppCompatActivity {
     ListView courseList;
     ArrayList<String> courses_al = new ArrayList<>();

@@ -1,20 +1,15 @@
 package com.dev.kaushik.jbcchat;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -22,17 +17,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.firebase.client.Firebase;
-import com.firebase.client.collection.ArraySortedMap;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static android.R.layout.simple_spinner_item;
+/**
+ * Created by Kaushik Das on 5/5/2017.
+ */
 
 public class Register extends AppCompatActivity {
     EditText username, password, cpassword,mKeyEntered;

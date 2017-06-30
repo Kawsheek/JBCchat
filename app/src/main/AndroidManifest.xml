@@ -18,14 +18,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Register" />
-        <activity android:name=".Users" />
+        <activity
+            android:name=".Register"
+            android:label="Registration"/>
+        <activity
+            android:name=".Users"
+            android:label="JBians"/>
         <activity android:name=".Chat" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".AdminLogin" />
-        <activity android:name=".Admin_Panel" />
-        <activity android:name=".Courses" />
-        <activity android:name=".FacultyList"></activity>
+        <activity
+            android:name=".AdminLogin"
+            android:label="Admin Login"/>
+        <activity
+            android:name=".Admin_Panel"
+            android:label="Admin Panel"/>
+        <activity
+            android:name=".Courses"
+            android:label="Courses Available"/>
+        <activity
+            android:name=".FacultyList"
+            android:label="Faculty">
+        </activity>
     </application>
 
 </manifest>

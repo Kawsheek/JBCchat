@@ -16,6 +16,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * Created by Kaushik Das on 3/5/2017.
+ */
+
 public class AdminLogin extends AppCompatActivity {
 
     EditText admin_email, admin_pass;

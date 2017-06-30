@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,6 +25,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+/**
+ * Created by Kaushik Das on 5/5/2017.
+ */
 
 public class Users extends AppCompatActivity {
     ListView usersList;

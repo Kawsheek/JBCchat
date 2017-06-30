@@ -15,7 +15,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.client.utilities.Utilities;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -23,10 +22,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.security.SecureRandom;
 import java.util.Random;
+
+/**
+ * Created by Kaushik Das on 5/5/2017.
+ */
 
 public class Admin_Panel extends AppCompatActivity {
     private static final String TAG = "tag";

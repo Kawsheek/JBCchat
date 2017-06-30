@@ -47,6 +47,14 @@ public class Courses extends AppCompatActivity {
                 return false;
             }
         });
+        MenuItem chat = menu.findItem(R.id.chat);
+        chat.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                startActivity(new Intent(Courses.this, Courses.class));
+                return false;
+            }
+        });
 
         return true;
     }

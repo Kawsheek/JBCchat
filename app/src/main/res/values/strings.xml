@@ -23,7 +23,7 @@
         <item>Statistics</item>
         <item>Zoology</item>
     </array>
-    <string name="sign_out">log out</string>
+    <string name="sign_out">logout</string>
     <string name="courses">courses</string>
     <string name="faculty">faculty</string>
     <string name="generate">generate</string>

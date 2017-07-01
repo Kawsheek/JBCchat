@@ -68,7 +68,7 @@ public class Courses extends AppCompatActivity {
         courseList = (ListView)findViewById(R.id.courseList);
 
         mdatabase = FirebaseDatabase.getInstance();
-        mRef = mdatabase.getReferenceFromUrl("https://jbcchat-ed847.firebaseio.com/Lists/FacultyList");
+        mRef = mdatabase.getReferenceFromUrl("https://jbcchat-ed847.firebaseio.com/Lists/CourseList");
 
         mListener = new ChildEventListener() {
             @Override
